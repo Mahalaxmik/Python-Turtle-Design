@@ -1,0 +1,534 @@
+######################################################
+# Project: Project 1
+# Student Name:  Kalappareddigari, Mahalaxmi 
+# UIN: 651195737
+# URL: https://trinket.io/library/trinkets/b0c95e55c7
+
+# For this project, I received help from the following websites.
+# Website 1: https://www.tutorialsandyou.com/python/how-to-draw-snowman-in-python-turtle-15.html
+# For the above website, I used it for helping me draw a snowman
+# Website 2: https://trinket.io/python/7d8f9a6ba3
+# For the above website, I used this source to help me draw the background of
+# randomized snow and write text
+# Website 3: https://stackoverflow.com/questions/55580936/how-to-remove-arrow-like-cursor-from-turtle-image
+# For the above website, I used it to get help removing the turtle black cursor on the turtle screen
+# Website 4: https://www.w3schools.com/colors/colors_picker.asp?colorhex=ff0000
+# For the above website, I used it to help me choose different shades of colors
+######################################################
+
+#!/bin/python3
+
+import turtle
+import random
+
+
+
+# initializes a screen
+# with respective dimesions
+# and color
+s = turtle.Screen()
+s.setup(500, 500)
+s.bgcolor("#003399")
+
+
+
+
+
+# first instance of the turtle module
+# and speed of the turtle
+t = turtle.Turtle()
+t.speed(100)
+
+
+
+
+
+# lists containing the colors of snow and stars
+# in the background
+colors_snow = ["lightblue", "grey", "white", "blue"]
+star_colors = [ "gold", "orange", "pink", "purple"]
+
+
+
+
+
+
+# create two lists of random colors for snow
+# and stars, not used in this program
+# just used as a way to compare the colors of the
+# origial list for snow and stars
+random_snow = ["lightblue", "yellow", "green"]
+random_star = ["gold", "blue", "red"]
+
+
+
+
+
+
+
+# global variables specifying 
+# angles, lengths, x, and y
+# coordinates for different functions
+# below
+angle = 90
+angle_1 = 120
+length_1 = 15
+length_2 = 60
+x1 = -35
+x2 = 35
+x3 = 30
+y1 = 8
+
+
+
+
+
+# second instance of the turtle module
+# speed of the turtle
+# and the turtle's tracing
+t1 = turtle.Turtle()
+t1.hideturtle()
+t1.speed(100)
+t1.tracer(0)
+
+
+
+
+
+
+# third instance of the turtle module
+# speed of the turtle
+# and the turtle's tracing
+t2 = turtle.Turtle()
+t2.hideturtle()
+t2.speed(100)
+t2.tracer(0)
+
+
+
+
+
+
+
+#####################
+# draw_shape function
+# defines how to draw a
+# circle with the 
+# respective parameters
+#####################
+def draw_shape(turtle, color, radius, x, y):
+  turtle.penup()
+  turtle.hideturtle()
+  turtle.fillcolor(color)   # color of circle
+  turtle.goto(x,y)
+  turtle.pendown()
+  turtle.begin_fill()
+  turtle.circle(radius)    # circle drawn with radius
+  turtle.end_fill()
+
+
+
+
+
+
+
+
+#####################
+# draw_body function
+# draws the body of the
+# snowman
+# Calls draw_shape
+# and its respective 
+# parameters to draw
+# the snowman body
+#####################
+def draw_body():  
+  draw_shape(t, "#ffffff", 30, 0, -40)  # circle 1 of the snowman body
+  draw_shape(t, "#ffffff", 40, 0, -100) # circle 2 of the snowman body
+  draw_shape(t, "#ffffff", 60, 0, -200) # circle 3 of the snowman body
+
+
+
+
+
+
+
+#####################
+# draw_eyes_nose function
+# draws the face
+# features of the
+# snowman
+# Calls draw_shape
+# and its respective 
+# parameters to draw
+# the snowman face
+# features
+#####################
+def draw_eyes_nose():
+  draw_shape(t, "#ffffff", 2, -10, -10) # draws left eye of snowman face
+  draw_shape(t, "#ffffff", 2, 10, -10) # draws right eye of snowman face
+  draw_shape(t, "#FF6600", 3, 0, -15) # draws snowman nose
+ 
+
+
+
+
+
+
+
+#####################
+# draw_buttons function
+# draws the buttons
+# of the
+# snowman body
+# Calls draw_shape
+# and its respective 
+# parameters to draw
+# the snowman's buttons
+#####################
+def draw_buttons():
+  draw_shape(t, "#ffffff", 2, 0, -25)   # button 1 of the snowman
+  draw_shape(t, "#ffffff", 2, 0, -35)   # button 2 of the snowman
+  draw_shape(t, "#ffffff", 2, 0, -45)   # button 3 of the snowman
+  draw_shape(t, "#ffffff", 2, 0, -55)   # button 4 of the snowman
+  draw_shape(t, "#ffffff", 2, 0, -65)   # button 5 of the snowman
+  draw_shape(t, "#ffffff", 2, 0, -75)   # button 6 of the snowman
+ 
+
+
+
+
+
+
+
+
+#####################
+# draw_arms function
+# draws the arms
+# of the
+# snowman
+# Calls draw_shape
+# and its respective 
+# parameters to draw
+# the snowman's arms
+#####################
+def draw_arms(color):
+  # draws the left arm of the snowman
+  t.penup()
+  t.goto(-15,-35)
+  t.pendown()
+  t.pensize(3)
+  t.color(color)
+  t.goto(-75, -50)
+  
+  # draws right arm of the snowman
+  t.penup()
+  t.goto(15,-35)
+  t.pendown()
+  t.pensize(3)
+  t.color(color)
+  t.goto(75, -50)
+
+
+
+
+
+
+
+
+#####################
+# draw_rectangle function
+# is used to draw
+# the hat of the
+# snowman
+# with respective parameters
+# below
+#####################
+def draw_rectangle(x, y, heading, line_color, fill_color, length, width):
+  t.penup()
+  t.goto(-35, 8)        # where the first rectangle is located for drawing a hat
+  t.color(line_color)
+  t.pensize(6)
+  t.pendown()
+  t.goto(35, 8)         
+  t.setheading(heading)
+ 
+  t.goto(30, 8)         # where the second rectangle is located for drawing a hat
+  t.fillcolor(fill_color)
+  t.begin_fill()
+  t.left(angle)
+  t.forward(length)     # length of the rectangle or the snowman's hat
+  t.left(angle)
+  t.forward(length)
+  t.left(angle)
+  t.forward(length)
+  t.end_fill()
+
+
+
+
+
+
+
+
+#####################
+# draw_trunk function
+# draws the trunk
+# of the
+# tree
+# with respective parameters
+# below
+#####################
+def draw_trunk(x, y , color, width, length):
+  t1.penup()
+  t1.fillcolor(color)
+  t1.goto(x, y)
+  t1.begin_fill()
+  
+  for i in range(2):    # rectangle shape for the tree trunk
+    t1.forward(width)
+    t1.left(angle)
+    t1.forward(length)
+    t1.left(angle)
+  
+  t1.end_fill()  
+
+
+
+
+
+
+
+
+#####################
+# draw_triangle function
+# draws the triangle
+# shape structure for the
+# top of the tree trunk
+# with respective parameters
+# below
+#####################
+def draw_triangle(x, y , color, length):
+  t1.penup()
+  t1.fillcolor(color)
+  t1.goto(x, y)
+  t1.setheading(360)
+  t1.begin_fill()
+  
+  for i in range(2):    # draws triangle shape for the top of the tree trunk
+    t1.forward(length)
+    t1.left(angle_1)
+  
+  t1.end_fill()  
+
+
+
+
+
+
+
+
+
+#####################
+# draw_snowman function
+# draws the snowman
+# with the help
+# of the above helper
+# functions
+#####################
+def draw_snowman():
+  draw_body()         # helper function for drawing snowman body
+  draw_eyes_nose()    # helper function for drawing snowman facial features
+  draw_buttons()      # helper function for drawing snowman buttons
+  draw_arms("#8B4513") # helper function for drawing snowman arms
+  # helper function for drawing snowman hat
+  draw_rectangle(x1, y1, 0, "black", "black", length_2, length_1) 
+  draw_rectangle(x2, y1, 0, "black", "black", length_2, length_1)
+  draw_rectangle(x3, y1, 0, "black", "black", length_2, length_1)
+
+
+
+
+
+
+
+
+
+#####################
+# draw_stars function
+# draws stars
+# of random color and location
+# in the background
+# with respective parameters
+# below
+#####################
+def draw_stars(x, y, color, length):
+  t.penup()
+  t.hideturtle()
+  t.color(color)
+  t.goto(x,y)
+  t.pendown()
+  
+  for i in range(5):    # iterates five times to draw a star
+    t.forward(length)
+    t.left(216)
+  
+
+
+
+
+
+
+
+
+#####################
+# draw_background function
+# draws the background
+# with snow and stars 
+# having random
+# color and location
+#####################
+def draw_background():
+  if random_snow[0] == colors_snow[0]:
+    for i in range(51):                   # iterates 50 times
+      t.penup()
+      x = random.randint(-250, 250)       # randomizes snow's x coordinate
+      y = random.randint(0, 250)          # randomizes snow's y coordinate
+      radius = random.randint(1, 8)       # randomizs circle radius
+      colors = random.choice(colors_snow) # randomizes color using the colors_snow list
+      t.color(colors)
+      t.goto(x, y)
+      # uses the above draw_shape function to help draw circles or snow with respective parameters corresponding to the paramters of draw_shape
+      draw_shape(t, colors, radius, x, y) 
+      t.pendown()
+  else:
+    print("Not the same!")
+  
+  if random_star[0] == star_colors[0]:
+    for i in range(31):                     # iterates 30 times
+      t.penup()
+      x_star = random.randint(-250, 250)    # randomizes star's x coordinate 
+      y_star = random.randint(0, 250)       # randomizes star's y coordinate 
+      star_length = random.randint(10, 14)  # randomizes star's length 
+      colors_star = random.choice(star_colors)  # randomizes star's colors with star_colors list
+      t.color(colors_star)
+      t.goto(x_star, y_star)
+      # uses the above draw_stars function to help draw stars with respective parameters corresponding to the parameters of draw_stars
+      draw_stars(x_star, y_star, colors_star, star_length)
+      t.pendown()
+  else:
+    print("Not the same!")
+
+
+
+
+
+
+
+
+
+
+#####################
+# screen_message function
+# writes a message indicating 
+# the name of the sceen, reference
+# to Chicago, and artist name
+# uses respective paramters below
+#####################
+def screen_message(message, color, x, y, font):
+  t2.penup()
+  t2.goto(x,y)
+  t2.pendown()
+  t2.pensize(8)
+  t2.color(color)
+  t2.write(message, None, None, font)  # write message method to write text
+
+
+
+
+
+
+
+
+
+#####################
+# main function
+# calls above functions
+# for drawing snowman,
+# trees, randomized snow,
+# randomized stars, and
+# written messages on the screen
+#####################
+def main():
+  draw_background() # snow and stars, background pictures
+  
+  draw_snowman()    # snowman, foreground picture
+  draw_trunk(-210, -200,"#8B4513", 20, 50)    # tree trunk, foreground picture
+  draw_trunk(200, -200, "#8B4513", 20, 50)
+  draw_trunk(-130, -200, "#8B4513", 20, 190)
+  draw_trunk(120, -200, "#8B4513", 20, 190)
+  
+  draw_triangle(-230, -140, "dark green", 60) # tree top, foreground picture
+  draw_triangle(-230, -120, "dark green", 60)
+  draw_triangle(-235, -170, "dark green", 70)
+  
+  draw_triangle(-165, -50, "dark green", 90)
+  draw_triangle(-165, -30, "dark green", 90)
+  draw_triangle(-170, -80, "dark green", 100)
+  draw_triangle(-175, -100, "dark green", 110)
+  draw_triangle(-178, -120, "dark green", 115)
+  
+  draw_triangle(180, -140, "dark green", 60)
+  draw_triangle(180, -120, "dark green", 60)
+  draw_triangle(175, -170, "dark green", 70)
+
+  draw_triangle(80, -50, "dark green", 90)
+  draw_triangle(80, -30, "dark green", 90)
+  draw_triangle(75, -80, "dark green", 100)
+  draw_triangle(70, -100, "dark green", 110)
+  draw_triangle(68, -120, "dark green", 115)
+  
+  # scene name written 
+  screen_message("A Chilly Day in Christmas", "#00ccff", -160, 200, font=('Helvetica', 20, 'bold'))
+  # Chicago reference written
+  screen_message("It's snowing in Chicago!", "#66ccff", -170, 150, font=('Times New Roman', 25, 'bold'))
+  # artist name written
+  screen_message("Artist: Mahalaxmi Kalappareddigari", "#ff3399", -170, 120, font=('Arial', 15, 'bold'))
+
+
+
+
+
+# calling the main function of the program
+# to run the entire program
+main()
+
+
+# update the screen 
+t1.update()
+t2.update()
+
+
+
+# Includes draw_background function
+# Line number(s): line 384 to line 420
+#
+# function uses a loop to draw a background from at least one shape
+# Line number(s): line 393 to line 403 and line 408 to line 418
+#
+# Uses at least two Turtles to draw the scene.
+# Line number(s): line 86 to line 92 and line 99 to line 105
+#
+# Includes draw_rectangle function, as specified
+# Line number(s): line 239 to line 265
+#
+# Includes draw_<shape> function, as specified
+# Line number(s): line 113 to line 127
+#
+# Includes function to draw the main object (spaceship, elephant, etc)
+# Line number(s): line 454 to line 496
+#
+# Includes a main method which runs the whole program
+# Line number(s): line 502 to line 504
+  
+  
